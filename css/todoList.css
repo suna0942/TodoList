@@ -1,0 +1,45 @@
+:root {
+  --font-color: #777;
+  --opacity_70: rgba(255, 255, 255, 0.7);
+}
+/* body */
+body {
+  width: 100vw;
+  height: 100vh;
+  min-width: 1200px;
+  min-height: 100vh;
+  margin: 0;
+}
+.darkModeBg {
+  background: url("/img/night.jpg") left center/cover no-repeat fixed;
+}
+.dayModeBg {
+  background: url("/img/beach.jpg") left center/cover no-repeat fixed;
+}
+
+/* mode 관련 */
+i {
+  font-size: 20px;
+  margin: 0 5px;
+}
+.availableClick {
+  opacity: .5;
+  cursor: pointer;
+  transition: all .6s;
+}
+.availableClick:hover {
+  opacity: 1;
+}
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+/* main영역 */
+.container {
+  width: 100px;
+  height: 200px;
+  background-color: var(--opacity_70);
+}
