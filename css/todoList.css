@@ -1,45 +1,283 @@
+@font-face {
+  font-family: 'KyoboHandwriting2020A';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/KyoboHandwriting2020A.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@media screen and (max-width: 900px) {
+  section.container {
+    top: 0;
+    transform: translate(-50%, 0);
+  }
+  .main_wrapper {
+    flex-direction: column;
+  }
+}
 :root {
   --font-color: #777;
   --opacity_70: rgba(255, 255, 255, 0.7);
+  --disabled_bg: #b9b9c9;
+  --disabled:#8a8a97;
+  --abled: #ffc83d;
+  --displayOn: block;
+  --displayNone: none;
+  --none: none;
 }
-/* body */
+:root[color-theme='dark']{
+  --backgroundBg: url("/img/night.jpg") left center/cover no-repeat fixed;
+  --font-color: #c9c9c9;
+  --darkOn: var(--displayOn);
+  --lightOff: var(--displayNone);
+  --darkOpacity: 1;
+  --lightOpacity: 0;
+  --switchOn: var(--abled);
+  --x: 35px;
+}
+:root[color-theme='light']{
+  --backgroundBg: url("/img/beach.jpg") left center/cover no-repeat fixed;
+  --font-color: var(--font-color);
+  --darkOn: var(--displayNone);
+  --lightOff: var(--displayOn);
+  --darkOpacity: 0;
+  --lightOpacity: 1;
+  --switchOn: var(--disabled);
+  --x: 0;
+}
 body {
-  width: 100vw;
-  height: 100vh;
-  min-width: 1200px;
-  min-height: 100vh;
+  font-family: 'KyoboHandwriting2020A';
+}
+/* bg */
+.backgroundBg {
+  background: var(--backgroundBg);
+}
+/* main영역 */
+.container {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20px;
+}
+.main_wrapper {
+  display: flex;
+  background-color: var(--opacity_70);
+  border-radius: 20px;
+}
+.main {
+  width: 420px;
+  height: 700px;
+  margin: 30px 10px;
+}
+/* mode 관련 */
+.switch {
+  width: 150px;
+  height: 40px;
+  display: flex;
+  right: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  box-shadow: 1px 1px 0px 6px #ffd84c75;
+}
+.switch div {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.switch input {
+  width: 50px;
+  height: 20px;
+  background-color: var(--disabled_bg);
+  border-radius: 10px;
+  appearance: var(--none);
   margin: 0;
 }
-.darkModeBg {
-  background: url("/img/night.jpg") left center/cover no-repeat fixed;
+#switch_handler { 
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--switchOn);
+  border-radius: 50%;
+  transform: translateX(var(--x));
+  transition: all .5s ease-in-out;
 }
-.dayModeBg {
-  background: url("/img/beach.jpg") left center/cover no-repeat fixed;
+#nightOn {
+  display: var(--darkOn);
+  opacity: var(--darkOpacity);
 }
-
-/* mode 관련 */
-i {
+#nightOff {
+  display: var(--lightOff);
+  opacity: var(--lightOpacity);
+}
+.switch span {
+  display: inline-block;
   font-size: 20px;
   margin: 0 5px;
 }
-.availableClick {
-  opacity: .5;
+.nightOff {
+  filter: grayscale(1);
+}
+/* user */
+#userChk {
+  margin: 20px;
+}
+#userChk input {
+  height: 30px;
+  border: var(--none);
+  outline-style: var(--none);
+}
+#userChk button {
+  font-size: 20px;
+  border: var(--none);
+  background-color: var(--none);
+}
+#userChk button:hover {
   cursor: pointer;
-  transition: all .6s;
-}
-.availableClick:hover {
-  opacity: 1;
-}
-.hidden {
-  display: none;
-}
-.show {
-  display: block;
+  animation: shakehand .4s infinite alternate;
 }
 
-/* main영역 */
-.container {
-  width: 100px;
-  height: 200px;
-  background-color: var(--opacity_70);
+/* 시계 */
+#clock {
+  position: relative;
+  text-align: center;
+  margin: 30px 0;
 }
+#clock p {
+  margin: 0;
+}
+#clock p:first-child{
+  font-size: 28px;
+}
+#clock p:last-child{
+  font-size: 40px;
+  font-weight: 700;
+}
+#clock::after {
+  content: "";
+  position: absolute;
+  left : 0;
+  right: 0;
+  margin: auto;
+  width: 300px;
+  height: 5px;
+  border-bottom: 1px solid #333;
+}
+
+/* 투두리스트 영역 */
+.todoList_container {
+  height: 75%;
+  margin: 0 20px;
+}
+.todoList_container > p {
+  font-size: 28px;
+  font-weight: 700;
+}
+#todo-list {
+  height: 70%;
+  margin: 20px 10px;
+  padding: 0;
+  overflow: auto;
+}
+#todo-list input[type="checkbox"] {
+  display: var(--displayNone);
+}
+#todo-list input[type="checkbox"] + label {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #333;
+  display: inline-block;
+  margin-right: 2px;
+}
+#todo-list input[type="checkbox"]:checked + label::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+}
+#todo-list input[type="checkbox"]:checked ~ p {
+  text-decoration: line-through;
+  color: #888;
+}
+#todo-list li {
+  display: grid;
+  grid-template-columns: 30px 30px calc(100% - 70px);
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+}
+#todo-list p {
+  width: 250px;
+  padding: 0 5px;
+  word-wrap: break-word;
+}
+#todo-list li button {
+  width: 30px;
+  height: 30px;
+  background: var(--none);
+  border: var(--none);
+}
+#todo-form {
+  width: 100%;
+}
+#todo-form input {
+  width: 90%;
+  height: 40px;
+  border-radius: 10px;
+  outline-style: var(--none);
+  border: var(--none);
+  padding-left: 15px;
+}
+
+/* 속담 */
+#quote {
+  width: 100%;
+  height: 100px;
+  display: flex;
+}
+#quote div:first-of-type {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#quote div:last-of-type {
+  width: calc(100% - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+#quote button {
+  margin: 2px 0;
+  background-color: var(--opacity_70);
+  border: var(--none);
+  border-radius: 10px;
+  width: 70%;
+  height: 30px;
+}
+#quote div p {
+  color: var(--font-color);
+}
+
+@keyframes shakehand {
+  from {
+    transform: rotate(20deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+
+};
