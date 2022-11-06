@@ -12,7 +12,7 @@ function onGeoSuccess (position){
       const weatherImg = weatherContainer.querySelector("img");
       const icon = data.weather[0].icon;
       const temp = Math.round(data.main.temp * 10) / 10;
-      weatherImg.src =  `../img/icons/${icon}.png`;
+      weatherImg.src =  `./img/icons/${icon}.png`;
       weather.innerText = `${temp}˚C`;
       city.innerText = data.name;
     });
