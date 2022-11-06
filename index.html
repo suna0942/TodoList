@@ -14,6 +14,14 @@
   <script defer src="js/greetings.js"></script>
   <script defer src="js/apikey.js"></script>
   <script defer src="js/weather.js"></script>
+  <script defer src="js/randomDog.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+	integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+	crossorigin="anonymous"
+	referrerpolicy="no-referrer">
+</script>
 </head>
 <body class="backgroundBg">
   <section class="container">
@@ -46,6 +54,11 @@
           <span></span>
           <span></span>
         </div>
+        <div id="randomDog">
+          <button type="button" id="dogBtn">Click Here &#128054;</button>
+          <div class="dog"></div>
+        </div>
+
       </div>
       <!-- todo -->
       <div class="main mainRight">
