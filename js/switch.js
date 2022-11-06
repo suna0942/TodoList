@@ -17,7 +17,6 @@ const hours = new Date().getHours();
 hours > 5 && hours < 18 ? mode = LIGHTMODE.theme : mode = DARKMODE.theme;
 
 function renderNightAndDay(mode){
-  // mode = 'light'; // 확인용
   document.documentElement.setAttribute('color-theme', mode);
   mode == DARKMODE.theme ? modeChk.checked = true : modeChk.checked = false;
 }
@@ -30,5 +29,4 @@ modeChk.addEventListener('change', (e) => {
   else mode = LIGHTMODE.theme;
   renderNightAndDay(mode)
 });
-console.log("체크 ", modeChk.checked);
 

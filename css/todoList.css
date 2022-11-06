@@ -20,7 +20,7 @@
   --none: none;
 }
 :root[color-theme='dark']{
-  --backgroundBg: url("/img/night.jpg") left center/cover no-repeat fixed;
+  --backgroundBg: url("../img/night.jpg") left center/cover no-repeat fixed;
   --font-color: #c9c9c9;
   --darkOn: var(--displayOn);
   --lightOff: var(--displayNone);
@@ -30,7 +30,7 @@
   --x: 35px;
 }
 :root[color-theme='light']{
-  --backgroundBg: url("/img/beach.jpg") left center/cover no-repeat fixed;
+  --backgroundBg: url("../img/beach.jpg") left center/cover no-repeat fixed;
   --font-color: var(--font-color);
   --darkOn: var(--displayNone);
   --lightOff: var(--displayOn);
