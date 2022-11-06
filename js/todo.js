@@ -72,6 +72,14 @@ function paintTodo(newTodoObj){
 let no;
 function handleTodoSubmit(e){
   e.preventDefault();
+  const newTodo = todoInput.value;
+  const regExp = /^\s$/g;
+  if(regExp.test(newTodo)){
+    alert('한글자 이상 입력해주세요!');
+    todoInput.select();
+    return;
+  }
+
   if(todoLists != null && todoLists != ''){
     const len = todoLists.length - 1;
     const lastTodoDay = todoLists[len].writeDay;
@@ -79,7 +87,6 @@ function handleTodoSubmit(e){
   }
   else no = 1;
 
-  const newTodo = todoInput.value;
   todoInput.value = "";
   const newTodoObj = {
     writeDay: TODOBOOKS_KEY + '_' + no,

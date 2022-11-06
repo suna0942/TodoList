@@ -1,7 +1,7 @@
 const modeSwitch = document.querySelector(".switch");
 const light = modeSwitch.querySelector("#nightOff");
 const night = modeSwitch.querySelector("#nightOn");
-const nightChk = modeSwitch.querySelector("#modeChk");
+const modeChk = modeSwitch.querySelector("#modeChk");
 
 let mode;
 const DARKMODE = {
@@ -19,17 +19,16 @@ hours > 5 && hours < 18 ? mode = LIGHTMODE.theme : mode = DARKMODE.theme;
 function renderNightAndDay(mode){
   // mode = 'light'; // 확인용
   document.documentElement.setAttribute('color-theme', mode);
+  mode == DARKMODE.theme ? modeChk.checked = true : modeChk.checked = false;
 }
   
 renderNightAndDay(mode);
 
-// 클릭 이벤트  - 다시하기
-function handlerShowToggle(e){
-  console.log(e.target);
-  afternoon.classList.toggle(SHOW);
-  night.classList.toggle(SHOW);
-}
-
-nightChk.addEventListener('change', handlerShowToggle);
-console.log(nightChk.checked);
+modeChk.addEventListener('change', (e) => {
+  const checkedYn = e.target.checked;
+  if(checkedYn) mode = DARKMODE.theme;
+  else mode = LIGHTMODE.theme;
+  renderNightAndDay(mode)
+});
+console.log("체크 ", modeChk.checked);
 

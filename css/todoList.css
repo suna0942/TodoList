@@ -5,10 +5,6 @@
   font-style: normal;
 }
 @media screen and (max-width: 900px) {
-  section.container {
-    top: 0;
-    transform: translate(-50%, 0);
-  }
   .main_wrapper {
     flex-direction: column;
   }
@@ -54,9 +50,6 @@ body {
 .container {
   width: 100%;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -85,6 +78,7 @@ body {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50px;
   box-shadow: 1px 1px 0px 6px #ffd84c75;
+  margin-left: 20px;
 }
 .switch div {
   display: flex;
@@ -132,6 +126,8 @@ body {
   height: 30px;
   border: var(--none);
   outline-style: var(--none);
+  border-radius: 10px;
+  padding-left: 10px;
 }
 #userChk button {
   font-size: 20px;
@@ -141,6 +137,48 @@ body {
 #userChk button:hover {
   cursor: pointer;
   animation: shakehand .4s infinite alternate;
+}
+.hidden {
+  display: var(--displayNone);
+}
+#userChk span {
+  font-size: 24px;
+  margin-right: 10px;
+}
+#greeting {
+  font-size: 35px;
+  font-weight: 700;
+  display: inline-block;
+  margin: 0;
+}
+#weather {
+  width: 80%;
+  height: 100px;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+  'a b'
+  'a c';
+}
+#weather img {
+  display: block;
+  width: 100px;
+  grid-area: a;
+}
+#weather span {
+  font-size: 20px;
+}
+#weather span:first-of-type {
+  grid-area: b;
+}
+#weather span:last-of-type {
+  grid-area: c;
 }
 
 /* 시계 */
