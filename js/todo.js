@@ -1,4 +1,4 @@
-// 우측 상단 시계
+// 선택 날짜
 const selectDay = document.querySelector("#selectDay");
 const today = new Date();
 selectDay.innerText = makeSelectDay(today);
