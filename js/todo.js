@@ -1,7 +1,6 @@
-// 선택 날짜
-const selectDay = document.querySelector("#selectDay");
-const today = new Date();
-selectDay.innerText = makeSelectDay(today);
+let selectDay;
+const selectDayEl = document.querySelector("#selectDay");
+selectDayEl.innerText = makeSelectDay(changeMonth);
 
 function makeSelectDay(day){
   const yy = day.getFullYear();
@@ -22,7 +21,7 @@ const TODOBOOKS_KEY = new Date().toLocaleDateString().replaceAll(/[. ]/g, "");
 let todoLists = JSON.parse(localStorage.getItem(TODOBOOKS_KEY)) || [];
 if(todoLists){
   todoLists.forEach(paintTodo);
-}
+};
 
 function saveTodoLists(){
  localStorage.setItem(`${TODOBOOKS_KEY}`, JSON.stringify(todoLists));

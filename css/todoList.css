@@ -28,6 +28,9 @@
   --lightOpacity: 0;
   --switchOn: var(--abled);
   --x: 35px;
+  --cal_bcc: #124366cf;
+  --cal_font-color: #dcdcdc;
+  --nothing-bcc: #888;
 }
 :root[color-theme='light']{
   --backgroundBg: url("../img/beach.jpg") left center/cover no-repeat fixed;
@@ -38,6 +41,9 @@
   --lightOpacity: 1;
   --switchOn: var(--disabled);
   --x: 0;
+  --cal_bcc: #ff3f274f;
+  --cal_font-color: #333;
+  --nothing-bcc: #ccc;
 }
 body {
   font-family: 'KyoboHandwriting2020A';
@@ -120,7 +126,7 @@ body {
 }
 /* user */
 #userChk {
-  margin: 30px;
+  margin: 20px 30px;
 }
 #userChk input {
   height: 30px;
@@ -181,34 +187,68 @@ body {
 #weather span:last-of-type {
   grid-area: c;
 }
-/* 랜덤Dog */
-#randomDog {
-  width: 80%;
-  height: 330px;
-  margin: 30px 0 20px 30px;
+/* 캘린더 */
+#cal_container {
+  margin: 10px;
+  height: 430px;
+}
+.cal_top {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+.cal_info {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.btn {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--cal_bcc);
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+.prev {
+  border-width: 0 0 3px 3px;
+}
+.next {
+  border-width: 3px 3px 0 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 5px;
   text-align: center;
 }
-#dogBtn {
-  font-size: 20px;
-  border: none;
-  background-color: var(--none);
+.grid div {
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+}
+.cal_day {
+  margin: 20px 10px;
+  color: var(--cal_font-color);
+}
+.cal_day div {
+  background-color: var(--cal_bcc);
+}
+.cal_content {
+  margin: 10px;
+}
+.cal_content div:not(.nothing) {
+  border: 1px solid var(--cal_bcc);
   cursor: pointer;
-  padding: 5px 10px;
 }
-#dogBtn:hover {
-  background-color: var(--opacity_70);
-  border-radius: 20px;
-}
-.dog {
-  width: 100%;
-  height: 300px;
-  margin-top: 10px;
-}
-.dog img {
-  width: 100%;
-  height: 100%;
+.cal_content div:not(.nothing):hover {
+  background-color: var(--cal_bcc);
+  color: var(--cal_font-color);
 }
 
+.grid .nothing {
+  background-color: var(--nothing-bcc);
+  color: var(--cal_font-color);
+}
+
+/* 우즉 */
 /* 시계 */
 #clock {
   position: relative;
