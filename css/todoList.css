@@ -260,6 +260,9 @@ body {
   background-color: var(--nothing-bcc);
   color: var(--cal_font-color);
 }
+.select {
+  background-color: var(--cal_bcc);
+}
 
 /* 우즉 */
 /* 시계 */

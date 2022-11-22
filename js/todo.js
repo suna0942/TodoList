@@ -8,6 +8,15 @@ selectDayEl.innerText = makeSelectDay(changeMonth);
 calContents.addEventListener('click', (e) => {
   const regExp = /^\d*$/g;
   if(!regExp.test(e.target.textContent)) return;
+
+  const calContentDivs = document.querySelectorAll(".cal_content div");
+  [...calContentDivs].forEach((div) => {
+    if(div === e.target)
+      div.classList.add('select');
+    else
+      div.classList.remove('select');
+  });
+  
   const ouputDays = `${changeMonth.getFullYear()}-${changeMonth.getMonth()+1}-${e.target.textContent}`;
   selectDayEl.innerText = makeSelectDay(ouputDays);
   todoBooks_key = selectDay;
