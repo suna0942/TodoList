@@ -1,30 +1,42 @@
-let selectDay;
 const selectDayEl = document.querySelector("#selectDay");
+const calContents = document.querySelector(".cal_content");
+let selectDay;
+let todoBooks_key = makeSelectDay(new Date());
 selectDayEl.innerText = makeSelectDay(changeMonth);
 
+// 원하는 날짜 선택
+calContents.addEventListener('click', (e) => {
+  const regExp = /^\d*$/g;
+  if(!regExp.test(e.target.textContent)) return;
+  const ouputDays = `${changeMonth.getFullYear()}-${changeMonth.getMonth()+1}-${e.target.textContent}`;
+  selectDayEl.innerText = makeSelectDay(ouputDays);
+  todoBooks_key = selectDay;
+  findTodoLists();
+});
+
 function makeSelectDay(day){
-  const yy = day.getFullYear();
-  let mm = day.getMonth() + 1;
-  let dd = day.getDate();
-  mm < 10 ? mm = `0${mm}` : mm = mm;
-  dd < 10 ? dd = `0${dd}` : dd = dd;
-  return `${yy}년 ${mm}월 ${dd}일`;
+  selectDay = new Date(day).toLocaleDateString('ko', {dateStyle: 'full'});
+  selectDay = selectDay.slice(0, selectDay.lastIndexOf(" "));
+  return selectDay;
 };
 
-// todoList 내용
+// todoList 내용 변수
 const toDoForm = document.querySelector("#todo-form");
 const todoInput = toDoForm.querySelector("input");
 const toDoList = document.querySelector("#todo-list");
 
-const TODOBOOKS_KEY = new Date().toLocaleDateString().replaceAll(/[. ]/g, "");
-
-let todoLists = JSON.parse(localStorage.getItem(TODOBOOKS_KEY)) || [];
-if(todoLists){
-  todoLists.forEach(paintTodo);
+// localStorage에 오늘 또는 선택한 날짜로 저장된 todo가 있는지 확인 후 paint 진행
+let todoLists = '';
+function findTodoLists(){
+  todoLists = JSON.parse(localStorage.getItem(todoBooks_key)) || [];
+  if(todoLists){
+    toDoList.innerHTML = '';
+    todoLists.forEach(paintTodo);
+  };
 };
 
 function saveTodoLists(){
- localStorage.setItem(`${TODOBOOKS_KEY}`, JSON.stringify(todoLists));
+ localStorage.setItem(`${todoBooks_key}`, JSON.stringify(todoLists));
 }
 
 function deleteToDo(e){
@@ -78,7 +90,7 @@ function handleTodoSubmit(e){
     todoInput.select();
     return;
   }
-
+  findTodoLists();
   if(todoLists != null && todoLists != ''){
     const len = todoLists.length - 1;
     const lastTodoDay = todoLists[len].writeDay;
@@ -87,8 +99,9 @@ function handleTodoSubmit(e){
   else no = 1;
 
   todoInput.value = "";
+  let _writeDay = todoBooks_key.replaceAll(/[년월일 ]/g, '');
   const newTodoObj = {
-    writeDay: TODOBOOKS_KEY + '_' + no,
+    writeDay: _writeDay + '_' + no,
     text: newTodo,
     done: false
   };
@@ -98,6 +111,7 @@ function handleTodoSubmit(e){
   no++;
 };
 
+findTodoLists();
 toDoForm.addEventListener("submit", handleTodoSubmit);
 
 

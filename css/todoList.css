@@ -9,6 +9,19 @@
     flex-direction: column;
   }
 }
+@media (prefers-color-scheme: darkMode){
+  --backgroundBg: url("../img/night.jpg") left center/cover no-repeat fixed;
+  --font-color: #c9c9c9;
+  --darkOn: var(--displayOn);
+  --lightOff: var(--displayNone);
+  --darkOpacity: 1;
+  --lightOpacity: 0;
+  --switchOn: var(--abled);
+  --x: 35px;
+  --cal_bcc: #124366cf;
+  --cal_font-color: #dcdcdc;
+  --nothing-bcc: #888;  
+}
 :root {
   --font-color: #777;
   --opacity_70: rgba(255, 255, 255, 0.7);
@@ -373,6 +386,11 @@ body {
   border-radius: 10px;
   width: 70%;
   height: 30px;
+  cursor: pointer;
+  transition: all linear .3s;
+}
+#quote button:hover {
+  background-color: white;
 }
 #quote div p {
   color: var(--font-color);

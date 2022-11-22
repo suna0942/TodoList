@@ -56,8 +56,7 @@ const cDays = (direction) => {
     }
   }
   const temp = `${cYear}-${cMonth}-01`;
-  changeMonth = new Date(temp);
-  renderCal(changeMonth);
+  renderCal(new Date(temp));
 };
 
 calPrev.addEventListener('click', () => cDays('prev'));
